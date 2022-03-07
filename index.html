@@ -268,7 +268,6 @@
           <option value="./cube_medium.glb">cube_medium</option>  <!-- 選択肢の上から2番目    〃     -->
           <option value="./cube_big.glb">cube_big</option>        <!-- 選択肢の上から3番目    〃     -->
           <option value="">オブジェクト4</option>                  <!-- 選択肢の上から4番目    〃     -->
-          <option test_object="/cube_medium.glb">テストオブジェクト(M)</option>                  <!-- 選択肢の上から4番目    〃     -->
         </select><br>
     
 
@@ -299,11 +298,7 @@
       /* (event) => {}：{}内の処理が(event)内にそのまま入る、無名関数なので()内に文字を入れる必要はない */
       /* event.target：イベントが発生した要素 */
       modelViewer.querySelector('#src').addEventListener('input', (event) => {  /*()内にeventと入っているが何も入れる必要はない*/
-        // modelViewer.src = event.target.value;       //input(ユーザーの操作によって値が変更された)時に行う処理(実際は(event)内に入る) /*参考  https://www.sejuku.net/blog/57625 */
-      
-        //テスト
-        modelViewer.src = event.target.test_object;
-
+        modelViewer.src = event.target.value;       //input(ユーザーの操作によって値が変更された)時に行う処理(実際は(event)内に入る) /*参考  https://www.sejuku.net/blog/57625 */
       });
 
 
