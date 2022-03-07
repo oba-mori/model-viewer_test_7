@@ -299,7 +299,7 @@
       /* (event) => {}：{}内の処理が(event)内にそのまま入る、無名関数なので()内に文字を入れる必要はない */
       /* event.target：イベントが発生した要素 */
       modelViewer.querySelector('#src').addEventListener('input', (event) => {  /*()内にeventと入っているが何も入れる必要はない*/
-        modelViewer.src = event.target.value;       //input(ユーザーの操作によって値が変更された)時に行う処理(実際は(event)内に入る) /*参考  https://www.sejuku.net/blog/57625 */
+        // modelViewer.src = event.target.value;       //input(ユーザーの操作によって値が変更された)時に行う処理(実際は(event)内に入る) /*参考  https://www.sejuku.net/blog/57625 */
       
         //テスト
         modelViewer.src = event.target.test_object;
