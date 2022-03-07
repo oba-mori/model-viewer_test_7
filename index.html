@@ -263,11 +263,12 @@
 
         <!-- 上記の文字の右側に表示されるボックスの要素 -->
         <select id="src">
-          <!-- <opion value:表示させるオブジェクトファイル> 選択肢に出てくる文字 -->
+          <!-- <opion value="表示させるオブジェクトファイル"> 選択肢に出てくる文字 -->
           <option value="./cube_small.glb">cube_small</option>    <!-- 選択肢の上から1番目のオブジェクトと、実際に表示される文字 -->
           <option value="./cube_medium.glb">cube_medium</option>  <!-- 選択肢の上から2番目    〃     -->
           <option value="./cube_big.glb">cube_big</option>        <!-- 選択肢の上から3番目    〃     -->
           <option value="">オブジェクト4</option>                  <!-- 選択肢の上から4番目    〃     -->
+          <option test_ob="./cube_medium.glb">オブ</option>                  <!-- 選択肢の上から4番目    〃     -->
         </select><br>
     
 
@@ -292,13 +293,19 @@
       const modelViewer = document.querySelector('#dimension-demo');
 
 
-      /* srcというid名(3Dデータかオブジェクト選択欄のどっちか)のHTML要素で、値が変更された時、 */
+      /* 下記プログラムの各コードの説明 */
+      /* 上記のプログラムによりmodelViewerは、dimension-demoというid名のHTML要素内を表す */
       /* イベントを検知する対象要素.addEventListener(イベント名, イベントを検知した時にする処理(関数名), オプション) */ 
-      /* addEventListener：イベントを検知して追加 */ /* input：ユーザーの操作によって値が変更された時(今回はテキストボックス内の文字列が変更された時) */
+      /* addEventListener：イベントを検知して追加 */ 
+      /* input：ユーザーの操作によって値が変更された時(今回はテキストボックス内の文字列が変更された時) */
       /* (event) => {}：{}内の処理が(event)内にそのまま入る、無名関数なので()内に文字を入れる必要はない */
-      /* event.target：イベントが発生した要素 */
-      modelViewer.querySelector('#src').addEventListener('input', (event) => {  /*()内にeventと入っているが何も入れる必要はない*/
-        modelViewer.src = event.target.value;       //input(ユーザーの操作によって値が変更された)時に行う処理(実際は(event)内に入る) /*参考  https://www.sejuku.net/blog/57625 */
+      /* event.target：イベントが発生した要素(今回はidがdimension-demoの要素内の、idがsrcの要素内を表している) */
+      /* event.target.value：この場合は上記の通りイベントが発生した要素内のvalueを指している */
+      
+      /* dimension-demoというid名のHTML要素内の、srcというid名(オブジェクト選択欄)のHTML要素で、値が変更された時、dimension-demoというid名のHTML要素内のsrc(表示3Dデータ)にイベント発生元のvalue(3Dデータ)が入る */
+      /* → <要約>オブジェクト選択欄のオブジェクト名が変更されると、それに対応したオブジェクトが表示される */
+      modelViewer.querySelector('#src').addEventListener('input', (event) => {  /*()内にeventと入っているが何も入れる必要はない*/ /* 参考　https://www.javadrive.jp/javascript/event/index24.html  https://ginpen.com/2015/12/22/event-target-elements/ */
+        modelViewer.src = event.target.test_ob;       //input(ユーザーの操作によって値が変更された)時に行う処理(実際は(event)内に入る) /*参考  https://www.sejuku.net/blog/57625 */
       });
 
 
