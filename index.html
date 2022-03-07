@@ -305,7 +305,6 @@
       /* → <要約>オブジェクト選択欄のオブジェクト名が変更されると、それに対応したオブジェクトが表示される */
       modelViewer.querySelector('#src').addEventListener('input', (event) => {  /*()内にeventと入っているが何も入れる必要はない*/ /* 参考　https://www.javadrive.jp/javascript/event/index24.html  https://ginpen.com/2015/12/22/event-target-elements/ */
         modelViewer.src = event.target.value;       //input(ユーザーの操作によって値が変更された)時に行う処理(実際は(event)内に入る) /*参考  https://www.sejuku.net/blog/57625 */
-        modelViewer.src = "./cube_medium.glb";
       });
 
 
