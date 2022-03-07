@@ -314,7 +314,7 @@
       /* チェック欄のチェックをON/OFFした時、寸法表示/非表示切り替え */
       checkbox.addEventListener('change', () => {                     //チェック欄のチェックをON/OFFした時
         modelViewer.querySelectorAll('button').forEach((hotspot) => {   //
-          if (/*checkbox.checked*/0) {             //チェック欄にチェックが入っている時
+          if (checkbox.checked) {             //チェック欄にチェックが入っている時
             hotspot.classList.remove('hide');     //表示
           } else {                            //チェック欄にチェックが入っていない時
             hotspot.classList.add('hide');        //非表示
