@@ -152,7 +152,7 @@
       max-camera-orbit="auto 100deg auto"     
       shadow-intensity="1"                          
       camera-controls                         
-      ios-src="./cube_small.glb"
+      src="./cube_small.glb"
       alt="A 3D model of an armchair."        
       style="width:800px;height:1000px;"
     >   
@@ -292,7 +292,7 @@
       const modelViewer = document.querySelector('#dimension-demo');
 
 
-      /* srcというid名(オブジェクト選択欄)のHTML要素で、値が変更された時、 */
+      /* srcというid名(3Dデータかオブジェクト選択欄のどっちか)のHTML要素で、値が変更された時、 */
       /* イベントを検知する対象要素.addEventListener(イベント名, イベントを検知した時にする処理(関数名), オプション) */ 
       /* addEventListener：イベントを検知して追加 */ /* input：ユーザーの操作によって値が変更された時(今回はテキストボックス内の文字列が変更された時) */
       /* (event) => {}：{}内の処理が(event)内にそのまま入る、無名関数なので()内に文字を入れる必要はない */
