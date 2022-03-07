@@ -305,6 +305,7 @@
       /* → <要約>オブジェクト選択欄のオブジェクト名が変更されると、それに対応したオブジェクトが表示される */
       modelViewer.querySelector('#src').addEventListener('input', (event) => {  /*()内にeventと入っているが何も入れる必要はない*/ /* 参考　https://www.javadrive.jp/javascript/event/index24.html  https://ginpen.com/2015/12/22/event-target-elements/ */
         modelViewer.src = event.target.value;       //input(ユーザーの操作によって値が変更された)時に行う処理(実際は(event)内に入る) /*参考  https://www.sejuku.net/blog/57625 */
+        modelViewer.src = "./cube_medium.glb";
       });
 
 
@@ -321,79 +322,105 @@
           }
         });
       });
+
     
-      modelViewer.addEventListener('load', () => {
-        const center = modelViewer.getCameraTarget();
-        const size = modelViewer.getDimensions();
-        const x2 = size.x / 2;
-        const y2 = size.y / 2;
-        const z2 = size.z / 2;
+      /* カメラが移動した時、寸法点と寸法をオブジェクトに追従させるプログラム */
+      modelViewer.addEventListener('load', () => {      /* dimension-demoというid名の全てのHTML要素を読み込んだ時、*/
+
+        const center = modelViewer.getCameraTarget();   //カメラのリアルタイムの目標位置をメートル単位で、変数centerに返す  //参考 https://modelviewer.dev/examples/stagingandcameras/#panning
+        const size = modelViewer.getDimensions();       //モデルの(バウンディングボックスの寸法)をメートル単位で、変数sizeに返す  //参考  https://modelviewer.dev/docs/
+        const x2 = size.x / 2;    //x軸の寸法の1/2を変数x2に入れる
+        const y2 = size.y / 2;    //y軸        〃      y2に入れる
+        const z2 = size.z / 2;    //z軸        〃      z2に入れる
     
-        modelViewer.updateHotspot({
-          name: 'hotspot-dot+X-Y+Z',
-          position: `${center.x + x2} ${center.y - y2} ${center.z + z2}`
+        //1
+        modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
+          name: 'hotspot-dot+X-Y+Z',    //名称
+          position: `${center.x + x2} ${center.y - y2} ${center.z + z2}`  //位置
         });
     
-        modelViewer.updateHotspot({
-          name: 'hotspot-dim+X-Y',
+        modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
+          name: 'hotspot-dim+X-Y',      //名称
           position: `${center.x + x2} ${center.y - y2} ${center.z}`
         });
         modelViewer.querySelector('button[slot="hotspot-dim+X-Y"]').textContent =
             `${(size.z * 100).toFixed(0)} cm`;
     
-        modelViewer.updateHotspot({
-          name: 'hotspot-dot+X-Y-Z',
+        //2
+        modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
+          name: 'hotspot-dot+X-Y-Z',    //名称
           position: `${center.x + x2} ${center.y - y2} ${center.z - z2}`
         });
     
-        modelViewer.updateHotspot({
-          name: 'hotspot-dim+X-Z',
+        modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
+          name: 'hotspot-dim+X-Z',      //名称
           position: `${center.x + x2} ${center.y} ${center.z - z2}`
         });
         modelViewer.querySelector('button[slot="hotspot-dim+X-Z"]').textContent =
             `${(size.y * 100).toFixed(0)} cm`;
     
-        modelViewer.updateHotspot({
-          name: 'hotspot-dot+X+Y-Z',
+        //3
+        modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
+          name: 'hotspot-dot+X+Y-Z',    //名称
           position: `${center.x + x2} ${center.y + y2} ${center.z - z2}`
         });
     
-        modelViewer.updateHotspot({
-          name: 'hotspot-dim+Y-Z',
+        modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
+          name: 'hotspot-dim+Y-Z',      //名称
           position: `${center.x} ${center.y + y2} ${center.z - z2}`
         });
         modelViewer.querySelector('button[slot="hotspot-dim+Y-Z"]').textContent =
             `${(size.x * 100).toFixed(0)} cm`;
     
-        modelViewer.updateHotspot({
-          name: 'hotspot-dot-X+Y-Z',
+        //4
+        modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
+          name: 'hotspot-dot-X+Y-Z',    //名称
           position: `${center.x - x2} ${center.y + y2} ${center.z - z2}`
         });
     
-        modelViewer.updateHotspot({
-          name: 'hotspot-dim-X-Z',
+        modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
+          name: 'hotspot-dim-X-Z',      //名称
           position: `${center.x - x2} ${center.y} ${center.z - z2}`
         });
         modelViewer.querySelector('button[slot="hotspot-dim-X-Z"]').textContent =
             `${(size.y * 100).toFixed(0)} cm`;
     
-        modelViewer.updateHotspot({
-          name: 'hotspot-dot-X-Y-Z',
+        //5
+        modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
+          name: 'hotspot-dot-X-Y-Z',    //名称
           position: `${center.x - x2} ${center.y - y2} ${center.z - z2}`
         });
     
-        modelViewer.updateHotspot({
-          name: 'hotspot-dim-X-Y',
+        modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
+          name: 'hotspot-dim-X-Y',      //名称
           position: `${center.x - x2} ${center.y - y2} ${center.z}`
         });
         modelViewer.querySelector('button[slot="hotspot-dim-X-Y"]').textContent =
             `${(size.z * 100).toFixed(0)} cm`;
     
-        modelViewer.updateHotspot({
-          name: 'hotspot-dot-X-Y+Z',
+        //6
+        modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
+          name: 'hotspot-dot-X-Y+Z',    //名称
           position: `${center.x - x2} ${center.y - y2} ${center.z + z2}`
         });
       });
+
+
+      /*
+      
+      
+
+      
+      
+      */
+
+
+
+      //寸法関連終わり
+
+
+
+
     </script>
     <!-- javascript終わり -->
 
