@@ -296,7 +296,7 @@
       /* addEventListener：イベントを検知して追加 */ /* input：ユーザーの操作によって値が変更された時(今回はテキストボックス内の文字列が変更された時) */
       /* (event) => {}：{}内の処理が(event)内にそのまま入る、 */
       /* event.taget：イベントが発生した要素 */
-      modelViewer.querySelector('#src').addEventListener('input', (iiiiiii) => {
+      modelViewer.querySelector('#src').addEventListener('input', () => {
         modelViewer.src = event.target.value;   //イベントを検知した時にする処理
       });
 
