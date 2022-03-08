@@ -23,25 +23,6 @@
 
 
 
-
-    <!-- <model-viewer
-    ar
-    alt="cube"
-    src="cube.glb"
-    ios-src="cube_red.usdz"
-
-    style="width:800px;height:1000px;"
-
-    background-color="#70BCD1"
-    shadow-intensity="0.7"
-    camera-controls
-    interaction-prompt="auto"
-    auto-rotate ar magic-leap> -->
-
-    <!-- </model-viewer> -->
-
-
-
     <!-- CSS -->
     <style>
       /* 左下の表示オブジェクトと寸法ONOFFを切り替えるボックスのデザイン、内容は下の div id="controls" の所でやっている */
@@ -104,44 +85,6 @@
 
 
 
-
-    <!-- styleで表示を大きくできる 
-    元々これだったけど小さい style="--poster-color:#ffffff00;" 
-    --> 
-    <!-- <model-viewer 
-      id="hotspot-demo" 
-      ar 
-      ar-modes="webxr" 
-      camera-controls 
-      src="cube.glb" 
-   
-      alt="A 3D model of an astronaut."
-      
-      style="width:800px;height:1000px;"
-      
-      background-color="#70BCD1"
-      shadow-intensity="0.7"
-      camera-controls
-      interaction-prompt="auto"
-      auto-rotate ar magic-leap>
-
-    
-    
-      <button slot="hotspot-visor" data-position="0 1.75 0.35" data-normal="0 0 1"></button>
-      <button slot="hotspot-hand" data-position="-0.54 0.93 0.1" data-normal="-0.73 0.05 0.69">
-        <div id="annotation">This hotspot disappears completely</div>
-      </button>
-      <button slot="hotspot-foot" data-position="0.16 0.1 0.17" data-normal="-0.07 0.97 0.23" data-visibility-attribute="visible"></button>
-      <div id="annotation">This annotation is fixed in screen-space</div>
-      
-    </model-viewer> -->
-
-
-
-
-
-
-
     <!-- model-viewer(html) -->
     <model-viewer 
       id="dimension-demo"                 
@@ -188,7 +131,7 @@
 
       <!-- AR起動ボタンをカスタム -->
       <!-- デフォルトで表示されている右下のカメラ起動ボタンを消して、新たにカメラ起動ボタンを作成 -->
-      <!-- //id：名前　// -->
+      <!-- //id：名前 -->
       <button
         id="custom-ar-button" 
         slot="ar-button" 
@@ -224,7 +167,7 @@
         }
       </style>
     
-      <!-- それぞれの説明は上に書いてある -->
+      <!-- それぞれの説明は上に同じコードが書いてあるのでそれを参考 -->
       <!-- 
         参考
         https://www.jyuko49.com/entry/2020/07/24/135155#AR%E3%83%9C%E3%82%BF%E3%83%B3%E3%81%AE%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B
@@ -266,7 +209,7 @@
           <option value="./cube_small.glb">cube_small(小箱)</option>    <!-- 選択肢の上から1番目のオブジェクトと、実際に表示される文字 -->
           <option value="./cube_medium.glb">cube_medium(中箱)</option>  <!-- 選択肢の上から2番目    〃     -->
           <option value="./cube_big.glb">cube_big(大箱)</option>        <!-- 選択肢の上から3番目    〃     -->
-          <option value="">オブジェクト無し</option>                  <!-- 選択肢の上から4番目    〃     -->
+          <option value="">オブジェクト無し</option>                     <!-- 選択肢の上から4番目    〃     -->
         </select><br>
     
 
@@ -280,10 +223,10 @@
     </model-viewer>
     
 
+    
 
     <!-- javascript -->
     <script type="module">  /* このスクリプトはモジュールであると宣言、モジュール(単なるファイル、JSファイル等)を呼び出して自動的に実行、実行はスクリプトの最後になる */
-
 
 
       /* dimension-demoというid名(model-viewer)のHTML要素を、変数modelViewerに入れる */
@@ -322,6 +265,7 @@
       });
 
 
+
       /* カメラが移動した時、寸法点と寸法をオブジェクトに追従させるコード */
       /*
       オブジェクトの寸法は四角柱で、それに寸法点と寸法を対応させるためには下記のようにする必要がある
@@ -341,7 +285,9 @@
         const x2 = size.x / 2;    //x軸の寸法の1/2を変数x2に入れる
         const y2 = size.y / 2;    //y軸        〃      y2に入れる
         const z2 = size.z / 2;    //z軸        〃      z2に入れる
-    
+        
+        console.log(center);
+
         //------------------------------------------------------------------------------
         //手順
 
