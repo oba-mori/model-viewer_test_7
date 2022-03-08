@@ -326,25 +326,38 @@
 
 
       /* カメラが移動した時、寸法点と寸法をオブジェクトに追従させるコード */
+      /*
+      オブジェクトの寸法は四角柱で、それに寸法点と寸法を対応させるためには下記のようにする必要がある
+      1. オブジェクトの中心点と、オブジェクトの寸法を取得する
+      2. x軸の寸法の1/2の値を取得。y軸、z軸も同じように取得
+
+      3. 寸法点1の場合 → オブジェクト中心点からx軸方向に+1/2x(オブジェクト寸法xの1/2)の距離、y軸方向に-1/2yの距離、z軸方向に+1/2zのの距離を行った位置に寸法点を表示
+      4. その他の寸法点、寸法も同じ様な形で表示する
+      
+      ※言葉だけでは分かりずらいので、図を描いた。同じフォルダ内の"寸法点と寸法 説明"というフォルダの中に置いてある。
+      */
+      //手順1.2.
       modelViewer.addEventListener('load', () => {      /* dimension-demoというid名の全てのHTML要素を読み込んだ時、*/
 
-        const center = modelViewer.getCameraTarget();   //カメラのリアルタイムの目標位置をメートル単位で、変数centerに返す  //参考 https://modelviewer.dev/examples/stagingandcameras/#panning
+        const center = modelViewer.getCameraTarget();   //カメラのリアルタイムの目標位置(たぶんスマホのカメラとオブジェクト回転中心点の距離だと思う)をメートル単位で、変数centerに返す  //参考 https://modelviewer.dev/examples/stagingandcameras/#panning
         const size = modelViewer.getDimensions();       //モデルの(バウンディングボックスの)寸法をメートル単位で、変数sizeに返す  //参考  https://modelviewer.dev/docs/
         const x2 = size.x / 2;    //x軸の寸法の1/2を変数x2に入れる
         const y2 = size.y / 2;    //y軸        〃      y2に入れる
         const z2 = size.z / 2;    //z軸        〃      z2に入れる
     
-        //------------------------------------------------------------------------------        //寸法点1
+        //------------------------------------------------------------------------------
+        //手順
+
         //寸法点1
         modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
-          // name: 'hotspot-dot+X-Y+Z',    //名称
-          // position: `${center.x + x2} ${center.y - y2} ${center.z + z2}`  //この位置に更新
+          name: 'hotspot-dot+X-Y+Z',    //名称
+          position: `${center.x + x2} ${center.y - y2} ${center.z + z2}`  //この位置に更新
         });
         
         //寸法1
         modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
-          // name: 'hotspot-dim+X-Y',      //名称
-          // position: `${center.x + x2} ${center.y - y2} ${center.z}`
+          name: 'hotspot-dim+X-Y',      //名称
+          position: `${center.x + x2} ${center.y - y2} ${center.z}`
         });
 
         //寸法テキストボックス1
@@ -354,14 +367,14 @@
         //------------------------------------------------------------------------------
         //寸法点2
         modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
-          // name: 'hotspot-dot+X-Y-Z',    //名称
-          // position: `${center.x + x2} ${center.y - y2} ${center.z - z2}`
+          name: 'hotspot-dot+X-Y-Z',    //名称
+          position: `${center.x + x2} ${center.y - y2} ${center.z - z2}`
         });
         
         //寸法2
         modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
-          // name: 'hotspot-dim+X-Z',      //名称
-          // position: `${center.x + x2} ${center.y} ${center.z - z2}`
+          name: 'hotspot-dim+X-Z',      //名称
+          position: `${center.x + x2} ${center.y} ${center.z - z2}`
         });
 
         //寸法テキストボックス2
@@ -371,14 +384,14 @@
         //------------------------------------------------------------------------------
         //寸法点3
         modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
-          // name: 'hotspot-dot+X+Y-Z',    //名称
-          // position: `${center.x + x2} ${center.y + y2} ${center.z - z2}`
+          name: 'hotspot-dot+X+Y-Z',    //名称
+          position: `${center.x + x2} ${center.y + y2} ${center.z - z2}`
         });
         
         //寸法3
         modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
-          // name: 'hotspot-dim+Y-Z',      //名称
-          // position: `${center.x} ${center.y + y2} ${center.z - z2}`
+          name: 'hotspot-dim+Y-Z',      //名称
+          position: `${center.x} ${center.y + y2} ${center.z - z2}`
         });
         
         //寸法テキストボックス3
@@ -388,14 +401,14 @@
         //------------------------------------------------------------------------------
         //寸法点4
         modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
-          // name: 'hotspot-dot-X+Y-Z',    //名称
-          // position: `${center.x - x2} ${center.y + y2} ${center.z - z2}`
+          name: 'hotspot-dot-X+Y-Z',    //名称
+          position: `${center.x - x2} ${center.y + y2} ${center.z - z2}`
         });
         
         //寸法4
         modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
-          // name: 'hotspot-dim-X-Z',      //名称
-          // position: `${center.x - x2} ${center.y} ${center.z - z2}`
+          name: 'hotspot-dim-X-Z',      //名称
+          position: `${center.x - x2} ${center.y} ${center.z - z2}`
         });
 
         //寸法テキストボックス4
@@ -405,8 +418,8 @@
         //------------------------------------------------------------------------------
         //寸法点5
         modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
-          // name: 'hotspot-dot-X-Y-Z',    //名称
-          // position: `${center.x - x2} ${center.y - y2} ${center.z - z2}`
+          name: 'hotspot-dot-X-Y-Z',    //名称
+          position: `${center.x - x2} ${center.y - y2} ${center.z - z2}`
         });
         
         //寸法5
@@ -422,26 +435,11 @@
         //------------------------------------------------------------------------------
         //寸法点6
         modelViewer.updateHotspot({   //"name"と同じ名称のホットスポットの位置や法線を更新する
-          // name: 'hotspot-dot-X-Y+Z',    //名称
-          // position: `${center.x - x2} ${center.y - y2} ${center.z + z2}`
+          name: 'hotspot-dot-X-Y+Z',    //名称
+          position: `${center.x - x2} ${center.y - y2} ${center.z + z2}`
         });
       });
-
-
-      /*
-      
-      
-
-      
-      
-      */
-
-
-
       //寸法関連終わり
-
-
-
 
     </script>
     <!-- javascript終わり -->
