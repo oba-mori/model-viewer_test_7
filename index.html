@@ -146,6 +146,7 @@
     <model-viewer 
       id="dimension-demo"                 
       ar 
+      ar-placement="floor"
       ar-modes="webxr"               
       ar-scale="fixed"                      
       camera-orbit="-30deg auto auto"         
@@ -157,10 +158,10 @@
       style="width:800px;height:1000px;"
     >   
     <!--  
-      id:名前をつける
+      id:id名を付ける(このHTML要素に)
       ar:サポートされているデバイスでARエクスペリエンスを起動する機能を有効する。
       ar-modes:有効にするARエクスペリエンスのタイプの優先リスト。("webxr":Android,iOSの両方、"webxr scene-viewer":Android、"webxr quick-look":iOS)
-      ar-scale:AR関連
+      ar-scale:モデルの大きさ変更可・不可を設定。(:auto → 変更可、 :fixed → 変更不可(大きさ固定))
       camera-orbit:カメラ関連
       max-camera-orbit:カメラ関連
       shadow-intensity:たぶん影の濃さ
@@ -170,7 +171,7 @@
       //合っているかは分からない
       ios-src:(iOS用)内容は上記の src と同じ　
       
-      alt:
+      alt:スクリーンリーダーを使用する、または追加のセマンティックコンテキストに依存して表示内容を理解する視聴者にモデルを説明するために使用されるカスタムテキストを使用して、モデルを構成します。
 
       styleは上記でも使用しているが、css要素
       width:表示領域の幅, height:上記の高さ (オブジェクトだけではなく、選択肢、AR起動ボタン等、作成したもの全て)
