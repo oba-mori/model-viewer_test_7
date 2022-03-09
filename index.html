@@ -95,7 +95,8 @@
       camera-orbit="-30deg auto auto"         
       max-camera-orbit="auto 100deg auto"     
       shadow-intensity="1"                          
-      camera-controls                         
+      camera-controls    
+      disable-zoom                     
       src="./cube_small.glb"
       alt="A 3D model of an armchair."        
       style="width:800px;height:1000px;"
@@ -110,6 +111,7 @@
       max-camera-orbit:カメラ関連
       shadow-intensity:たぶん影の濃さ
       camera-controls:マウス/タッチによるカメラ操作を有効にする
+      disable-zoom:ホイールによるズームを無効      
       src:(Android用)ページにアクセスした時、最初に表示するオブジェクト(オブジェクト選択の初期表示は他の場所で設定しているため、設定によっては表示オブジェクトと異なる場合がある)
       
       //合っているかは分からない
@@ -206,10 +208,11 @@
         <!-- 上記の文字の右側に表示されるボックスの要素 -->
         <select id="src">
           <!-- <opion value="表示させるオブジェクトファイル"> 選択肢に出てくる文字 -->
-          <option value="./cube_small.glb">cube_small</option>               <!-- 選択肢の上から1番目のオブジェクトと、実際に表示される文字 -->
-          <option value="./cube_small_red.glb">cube_medium(赤)</option>      <!-- 選択肢の上から2番目    〃     -->
-          <option value="./cube_small_blue.glb">cube_big(青)</option>        <!-- 選択肢の上から3番目    〃     -->
-          <option value="">オブジェクト無し</option>                     <!-- 選択肢の上から4番目    〃     -->
+          <option value="./cube_small.glb">cube_small(小)</option>               <!-- 選択肢の上から1番目のオブジェクトと、実際に表示される文字 -->
+          <option value="./cube_small_red.glb">cube_small(赤)</option>      <!-- 選択肢の上から2番目    〃     -->
+          <option value="./cube_small_blue.glb">cube_small(青)</option>   <!-- 選択肢の上から3番目    〃     -->
+          <option value="./cube_medium.glb">cube_medium(中)</option>          <!-- 選択肢の上から4番目    〃     -->
+          <option value="">オブジェクト無し</option>                     <!-- 選択肢の上から5番目    〃     -->
         </select><br>
     
 
